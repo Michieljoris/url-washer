@@ -92,6 +92,7 @@ module.exports = {
         which: "*",
         request: "*",
         extend: "*"
+        // ,phantomjs: "*"
     },
     // What dependencies are useful only for developers?
     // Installed when we `npm install` in our working directory, but not 
