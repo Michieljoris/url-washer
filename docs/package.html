@@ -1,0 +1,117 @@
+<!DOCTYPE html>  <html> <head>   <title>package.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               package.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>This file is the source for constructing a <code>package.json</code> file.
+JSON is a wonderful interchange format, but due to the fact that the
+<a href="http://json.org">JSON Specification</a> does not allow for comments, I find
+it horrid for self documenting examples.</p>
+
+<p>JavaScript allows for comments and inherently allows JSON. This file will
+act as the source for building a <code>package.json</code> file that also manages this
+package.</p>
+
+<p>It is the closest I can get to a self-documenting <code>package.json</code> file.</p>             </td>             <td class="code">               <div class="highlight"><pre>
+
+
+</pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>The <code>package.json</code> file always consists of one top level object, which is
+what we export here in a <a href="http://nodejs.org">Node.js</a> friendly way that
+will allow us to build our <code>package.json</code> file. A real <code>package.json</code> file
+will not contain the <code>exports =</code> definition, nor any of these comments.</p>             </td>             <td class="code">               <div class="highlight"><pre>module.exports = {
+</pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Many of the following <code>package.json</code> parameters are optional depending
+on whether or not this package will ever be published, and depending
+on how much management we want to delegate to npm. I did not mark
+optional vs. not-optional for the parameters, as a <code>package.json</code> file
+is by its nature always optional.</p>             </td>             <td class="code">               <div class="highlight"><pre>    
+</pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Our npm package name needs to be unique only if we are going to publish
+our package into an npm registry. If we aren't going to publish the 
+package the name can be anything we want.</p>
+
+<p>Leave off redundant affixes like <code>node-package</code> or <code>package-js</code>. 
+We know it is JavaScript for Node.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"name"</span>: <span class="string">"packagejsonexample"</span>,
+</pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>A single line, or sometimes slightly longer, description of our package.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"description"</span>: <span class="string">"A documented package.json file"</span>,
+</pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p><a href="http://npmjs.org">npm</a> enforces the X.Y.Z semantic version 
+scheme that is described at <a href="http://semver.org/">http://semver.org/</a>
+and we should follow this versioning for our package.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"version"</span>: <span class="string">"0.0.2"</span>,
+</pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>URL to the homepage for this package.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"homepage"</span>: <span class="string">"https://github.com/jeremyosborne/packagejsonexample"</span>,
+</pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>An array of keywords used to describe this package to search engines,
+mainly for people searching within the npm universe.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"keywords"</span>: [
+        <span class="string">"package.json"</span>,
+        <span class="string">"package"</span>,
+        <span class="string">"example"</span>
+    ],
+</pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>Where is the source of truth for this code, and what type of repo is it?</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"repository"</span>: {
+        <span class="string">"type"</span>: <span class="string">"git"</span>,
+        <span class="string">"url"</span>: <span class="string">"https://github.com/jeremyosborne/packagejsonexample.git"</span>
+    },
+</pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>Every package should have at least one author. There are a couple of
+formats for the author. I prefer the explicit object format as follows:</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"author"</span>: {
+        <span class="string">"name"</span>: <span class="string">"Jeremy Osborne"</span>,
+        <span class="string">"email"</span>: <span class="string">"jeremywosborne@gmail.com"</span>,
+        <span class="string">"url"</span>: <span class="string">"http://jeremyosborne.com/"</span>
+    },
+</pre></div>             </td>           </tr>                               <tr id="section-11">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-11">&#182;</a>               </div>               <p>What licenses govern this code, and where is the license associated
+with this code?
+The complex form, "licenses", is an array of objects.
+The simplest form is "license", and may point to just a string that
+represents the standard name of the license, like "MIT".</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"licenses"</span>: [
+        {
+            <span class="string">"type"</span>: <span class="string">"MIT"</span>,
+            <span class="string">"url"</span>: <span class="string">"http://github.com/jeremyosborne/packagejsonexample/blob/master/LICENSE.txt"</span>
+        }
+    ],
+</pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <p>If there is a file that should be loaded when require()ing this 
+folder-as-a-package, declare this file here, relative to our package 
+structure.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"main"</span>: <span class="string">"src/package.js"</span>,
+</pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>Essentially, which Node.js platforms do we support? These are glob
+like expressions supported by the 
+<a href="https://npmjs.org/doc/semver.html">npm semantic version parser</a>, 
+and the below version means what it looks like: </p>
+
+<p>require a Node.js installation that is greater than or equal to version 0.6.0</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"engines"</span>: {
+        <span class="string">"node"</span>: <span class="string">"&gt;= 0.6.x"</span>
+    },
+</pre></div>             </td>           </tr>                               <tr id="section-14">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>               <p>What other modules/libraries do we require for our own module?
+The beauty of this dependencies block is that these modules will
+be downloaded magically when we run npm install from within our
+directory. npm itself will sort out any dependency conflicts within
+our own dependencies and we can be pretty much assured that the
+modules we need will be ready to run.</p>
+
+<p><strong>NOTE:</strong> We don't have any dependencies for this module. See the
+<code>devDependencies</code> block for the way to include dependencies.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"dependencies"</span>: {
+    },
+</pre></div>             </td>           </tr>                               <tr id="section-15">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-15">&#182;</a>               </div>               <p>What dependencies are useful only for developers?
+Installed when we <code>npm install</code> in our working directory, but not 
+when people require our package in their own package.json. This is the 
+usual and accepted place to put test frameworks and documentation
+tools.</p>
+
+<p>The packages we depend on for development:</p>
+
+<ul>
+<li><strong>fs-extra</strong>: Mixin for the fs (filesystem) module.</li>
+<li><strong>doccoh</strong>: Documentation utility for this code.</li>
+</ul>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"devDependencies"</span>: {
+        <span class="string">"fs-extra"</span>: <span class="string">"0.3.x"</span>,
+        <span class="string">"doccoh"</span>: <span class="string">"0.4.1"</span>
+    },
+</pre></div>             </td>           </tr>                               <tr id="section-16">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>               <p>Should this package be prevented from accidental publishing by npm?
+The default is false (not hidden), but I include this here for doc
+purposes.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"private"</span>: <span class="literal">false</span>,
+</pre></div>             </td>           </tr>                               <tr id="section-17">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-17">&#182;</a>               </div>               <p>npm has can manage a set of standard and non-standard scripts. The
+standard set of scripts can be run with: </p>
+
+<pre><code>npm standard-script-name
+</code></pre>
+
+<p>The non-standard scripts can be run with:</p>
+
+<pre><code>npm run-script script-name
+</code></pre>
+
+<p><code>dist</code> is a non-standard script, and can be run with:</p>
+
+<pre><code>npm run-script dist
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="string">"scripts"</span>: {
+        <span class="string">"dist"</span>: <span class="string">"node dist; node_modules/.bin/doccoh src/package.js"</span>
+    }
+};
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
