@@ -24,8 +24,8 @@ Or uncomment the phantomjs dependency in package.js, then:
     node package.js
 	npm install
 	
-If wash can't find a phantomjs executable it will ask the seoServer when
-the url has been set in options.
+If wash can't find a phantomjs executable it will ask the seoServer
+(if set in options)
 
 It will do an ajax call to http://seoServerUrl?url=someUrl, and expect
 html to be returned.
@@ -37,7 +37,7 @@ Finally:
 	},
 	function(err) {
 	  //no dice, you will have to send uncleansed html
-   })
+    })
 
 
 
