@@ -20,7 +20,7 @@ var phantomPath;
 var log = [];
 
 var options = {
-    verbose: true
+    verbose: false
     ,die: 30000
     // ,phantomPath: 'bla'
     // ,seoServer: 'http://seoserver.axion5.net'
@@ -125,8 +125,8 @@ function render(url, phantomPath) {
                 if (data.headers.status === 301) {
                     data.headers.location = data.headers.redirectURL;
                 }
-                debug('Body length:' + data.body.length, data.headers, data.links);
-                vow.keep({ html: removeScriptTags(data.body), headers: data.headers, anchors: data.links, err: err });
+                // debug('Body length:' + data.body.length, data.headers, data.links);
+                vow.keep({ html: removeScriptTags(data.body), headers: data.headers, links: data.links, err: err });
             }
             else vow.breek();
         }
@@ -144,7 +144,7 @@ function wash(url, someOptions) {
             })
         .when(
             function(result) {
-                vow.keep(result.html);
+                vow.keep(result);
             }
             ,function(err) {
                 if (options.seoServer) {

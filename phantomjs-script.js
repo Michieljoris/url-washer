@@ -57,7 +57,7 @@ var checkComplete = function () {
             } else {
                 // console.log(page.content);
                 body = page.content;
-                var anchors = page.evaluate(function() {
+                var links = page.evaluate(function() {
                     var nodes = document.getElementsByTagName('a');
                     var urls = [];
                     Object.keys(nodes).forEach(function(n) {
@@ -68,7 +68,7 @@ var checkComplete = function () {
                 console.log(JSON.stringify({
                     headers: initialResponse,
                     body: body
-                    ,anchors: anchors
+                    ,links: links
                 }));
                 phantom.exit();
             }
