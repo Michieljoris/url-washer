@@ -69,34 +69,37 @@ function render(url, phantomPath) {
         vow.breek('Timed out');
     }, options.die);
     
-    var headers = {};
+    // var headers = {};
     phantom.stdout.setEncoding('utf8');
     phantom.stdout.on('data', function (data) {
-        console.log(data);
         data = data.toString();
-        var responseHeaders;
-        var match = data.match(/(\{.*?\})\n\n/);
-        if (match) {
-            responseHeaders = JSON.parse(match[1]);
-            if (responseHeaders.status) {
-                headers.status = responseHeaders.status;
-            }
-            if (responseHeaders.status === 301) {
-                headers.location = responseHeaders.redirectURL;
-            }
-            headers.contentType = responseHeaders.contentType;
-            data = data.replace(/(.*?)\n\n/, '');
-            // debug(responseHeaders);
-        }
-        if (data.match(/^\w*error/i)) {
-            headers.status = 503;
-            debug("js error: " + data.toString());
-        }
-        else html += data;
+        // var responseHeaders;
+        // var match = data.match(/(\{.*?\})\n\n/);
+        // if (match) {
+        //     try {
+        //         responseHeaders = JSON.parse(match[1]);
+        //         if (responseHeaders.status) {
+        //             headers.status = responseHeaders.status;
+        //         }
+        //         if (responseHeaders.status === 301) {
+        //             headers.location = responseHeaders.redirectURL;
+        //         }
+        //         headers.contentType = responseHeaders.contentType;
+        //         data = data.replace(/(.*?)\n\n/, '');
+        //         debug(responseHeaders);
+        //     } catch(e) { console.log(e); } 
+        // }
+        // if (data.match(/^\w*error/i)) {
+        //     headers.status = 503;
+        //     debug("js error: " + data.toString());
+        // }
+        // else
+        html += data;
     });
 
     phantom.stderr.on('data', function (data) {
         err.push(data.toString());
+        
     });
 
     // phantom.on('close', function (code) {
@@ -116,10 +119,18 @@ function render(url, phantomPath) {
             //  We chose to remove all script tags,
             //  otherwise if/when google bot will start to parse js
             //  it will lead to duplicate renderings of the page.
-            vow.keep({ html: removeScriptTags(html), err: err });
+            var data;
+            try { data = JSON.parse(html);  } catch(e) {  }
+            if (data) {
+                if (data.headers.status === 301) {
+                    data.headers.location = data.headers.redirectURL;
+                }
+                debug('Body length:' + data.body.length, data.headers, data.links);
+                vow.keep({ html: removeScriptTags(data.body), headers: data.headers, anchors: data.links, err: err });
+            }
+            else vow.breek();
         }
     });
-    
     return vow.promise;   
 }
 
@@ -133,7 +144,6 @@ function wash(url, someOptions) {
             })
         .when(
             function(result) {
-                // debug(result.html, result.err);
                 vow.keep(result.html);
             }
             ,function(err) {
@@ -162,8 +172,7 @@ function wash(url, someOptions) {
 
 module.exports = wash;
 
-//testing:
-// wash('http://firstdoor.axion5.net',{ phantomPath: 'phantomjs' }).when(
-//     function(data) { console.log(data);}
+// render('http://localhost:6001', 'phantomjs' ).when(
+//     function(data) { console.log("RESULT:", data);}
 //     ,function(data) { console.log('error', data);}
 // );

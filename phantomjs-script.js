@@ -49,13 +49,29 @@ var checkComplete = function () {
             requestCount === responseCount ||
             new Date().getTime() - startTime > 30000)  {
             clearInterval(checkCompleteInterval);
-            console.log(JSON.stringify(initialResponse) + "\n\n");
+            // console.log(JSON.stringify(initialResponse) + "\n\n");
+            var body;
             if(initialResponse && initialResponse.contentType === "text/plain") {
-                console.log(page.plainText);
+                body = page.plainText;
+                // console.log(page.plainText);
             } else {
-                console.log(page.content);
+                // console.log(page.content);
+                body = page.content;
+                var anchors = page.evaluate(function() {
+                    var nodes = document.getElementsByTagName('a');
+                    var urls = [];
+                    Object.keys(nodes).forEach(function(n) {
+                        if (nodes[n].href) urls.push(nodes[n].href);
+                    });
+                    return urls;
+                }); 
+                console.log(JSON.stringify({
+                    headers: initialResponse,
+                    body: body
+                    ,anchors: anchors
+                }));
+                phantom.exit();
             }
-            phantom.exit();
         } else {
             if (debug) {
                 console.error(
@@ -73,3 +89,5 @@ var checkComplete = function () {
 };
 
 var checkCompleteInterval = setInterval(checkComplete, 100);
+
+
