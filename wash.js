@@ -128,7 +128,7 @@ function render(url, phantomPath) {
                 // debug('Body length:' + data.body.length, data.headers, data.links);
                 vow.keep({ html: removeScriptTags(data.body), headers: data.headers, links: data.links, err: err });
             }
-            else vow.breek();
+            else vow.breek('Prerender error, no data');
         }
     });
     return vow.promise;   
@@ -173,6 +173,6 @@ function wash(url, someOptions) {
 module.exports = wash;
 
 // render('http://localhost:6001', 'phantomjs' ).when(
-//     function(data) { console.log("RESULT:", data);}
+//     function(data) { console.log("RESULT:", data, data.headers.headers);}
 //     ,function(data) { console.log('error', data);}
 // );
