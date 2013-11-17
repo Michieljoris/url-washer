@@ -39,7 +39,9 @@ try {
 
 function initPhantom() {
     var vow = VOW.make();
-    var path = options.phantomPath || phantomPath;
+    var path = options.phantomPath ?
+        (typeof options.phantomPath === 'string' ?
+         options.phantomPath : phantomPath || 'phantomjs'  ) : '';
     Which(path, function(err, path) {
         // debug(path);
         if (!err) {
