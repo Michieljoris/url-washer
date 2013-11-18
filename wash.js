@@ -20,12 +20,11 @@ var phantomPath;
 var log = [];
 
 var options = {
-    verbose: false
+    verbose: true
     ,die: 30000
-    // ,phantomPath: 'bla'
+    // ,phantomPath: true
     // ,seoServer: 'http://seoserver.axion5.net'
 };
-
 
 function debug() {
     if (options.verbose) console.log.apply(console, arguments);
@@ -35,18 +34,23 @@ function debug() {
 try {
     phantomPath = require('phantomjs').path;
 } catch(e) {
-    debug(e); } 
+    debug('Node phantomjs module not installed', e); } 
 
 function initPhantom() {
     var vow = VOW.make();
-    var path = options.phantomPath || phantomPath || 'phantomjs';
-    Which(path, function(err, path) {
-        // debug(path);
-        if (!err) {
-            vow.keep(path);   
-        }
-        else vow.breek(err);
-    });
+    if (!options.phantomPath)  vow.breek('not using phantomjs'); 
+    else { var path = typeof options.phantomPath === 'string' ?
+           options.phantomPath :  (phantomPath || 'phantomjs');
+           console.log(path);
+           Which(path, function(err, path) {
+               debug('path:', path);
+               if (!err) {
+                   vow.keep(path);   
+               }
+               else vow.breek(err);
+           });
+        
+         }
     return vow.promise;
 }
 
@@ -61,7 +65,6 @@ function render(url, phantomPath) {
     ];
     var html = "";
     var err = [];
-    
     var phantom = spawn(phantomPath, childArgs);
     
     var timeout = setTimeout(function() {
@@ -73,6 +76,7 @@ function render(url, phantomPath) {
     phantom.stdout.setEncoding('utf8');
     phantom.stdout.on('data', function (data) {
         data = data.toString();
+        console.log('data', data);
         // var responseHeaders;
         // var match = data.match(/(\{.*?\})\n\n/);
         // if (match) {
@@ -172,7 +176,16 @@ function wash(url, someOptions) {
 
 module.exports = wash;
 
-// render('http://localhost:6001', 'phantomjs' ).when(
-//     function(data) { console.log("RESULT:", data, data.headers.headers);}
-//     ,function(data) { console.log('error', data);}
+//TEST
+// initPhantom().when(
+//     function(path) {
+//         console.log(path);
+//         render('http://localhost:9000', path ).when(
+//             function(data) { console.log("RESULT:", data, data.headers.headers);}
+//             ,function(data) { console.log('Error', data);}
+//         );
+//     },
+//     function(err) {
+//         console.log(err);
+//     }
 // );
