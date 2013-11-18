@@ -34,7 +34,7 @@ module.exports = {
     // [npm](http://npmjs.org) enforces the X.Y.Z semantic version 
     // scheme that is described at [http://semver.org/](http://semver.org/)
     // and we should follow this versioning for our package.
-    "version": "0.2.1",
+    "version": "0.2.2",
     // URL to the homepage for this package.
     "homepage": "https://github.com/michieljoris/url_washer",
     // An array of keywords used to describe this package to search engines,
