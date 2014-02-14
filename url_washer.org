@@ -1,0 +1,2 @@
+* improve error handling
+See commented out sections of wash.js

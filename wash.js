@@ -18,12 +18,11 @@ var spawn = require('child_process').spawn,
 var phantomPath = 'phantomjs';
 
 var options = {
-    verbose: false
+    verbose: true
     ,die: 30000
     ,phantomPath: true 
     // ,seoServer: 'http://seoserver.axion5.net'
 };
-
 
 function debug() {
     if (options.verbose) console.log.apply(console, arguments);
@@ -32,22 +31,23 @@ function debug() {
 try {
     phantomPath = require('phantomjs').path;
 } catch(e) {
-    debug(e); } 
+    debug('Node phantomjs module not installed', e); } 
 
 function initPhantom() {
     var vow = VOW.make();
-    
-    var path = options.phantomPath ?
-        (typeof options.phantomPath === 'string' ?
-         options.phantomPath : phantomPath ) : false;
-    if (path)
-        Which(path, function(err, path) {
-            // debug(path);
-            if (!err) {
-                vow.keep(path);   
-            }
-            else vow.breek(err);
-        });
+    var path;
+    if (!options.phantomPath)  vow.breek('not using phantomjs'); 
+    else { path = typeof options.phantomPath === 'string' ?
+                   options.phantomPath : phantomPath;
+           if (path)
+               Which(path, function(err, path) {
+                   // debug(path);
+                   if (!err) {
+                       vow.keep(path);   
+                   }
+                   else vow.breek(err);
+               });
+         }
     return vow.promise;
 }
 
@@ -62,7 +62,6 @@ function render(url, phantomPath) {
     ];
     var html = "";
     var err = [];
-    
     var phantom = spawn(phantomPath, childArgs);
     
     var timeout = setTimeout(function() {
@@ -175,7 +174,16 @@ function wash(url, someOptions) {
 
 module.exports = wash;
 
-// render('http://localhost:6001', 'phantomjs' ).when(
-//     function(data) { console.log("RESULT:", data, data.headers.headers);}
-//     ,function(data) { console.log('error', data);}
+//TEST
+// initPhantom().when(
+//     function(path) {
+//         console.log(path);
+//         render('http://localhost:9000', path ).when(
+//             function(data) { console.log("RESULT:", data, data.headers.headers);}
+//             ,function(data) { console.log('Error', data);}
+//         );
+//     },
+//     function(err) {
+//         console.log(err);
+//     }
 // );
