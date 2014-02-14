@@ -15,21 +15,18 @@ var spawn = require('child_process').spawn,
     extend = require('extend')
     ;
 
-var phantomPath;
-
-var log = [];
+var phantomPath = 'phantomjs';
 
 var options = {
     verbose: false
     ,die: 30000
-    // ,phantomPath: 'bla'
+    ,phantomPath: true 
     // ,seoServer: 'http://seoserver.axion5.net'
 };
 
 
 function debug() {
     if (options.verbose) console.log.apply(console, arguments);
-    log.push(arguments);
 }
 
 try {
@@ -42,14 +39,15 @@ function initPhantom() {
     
     var path = options.phantomPath ?
         (typeof options.phantomPath === 'string' ?
-         options.phantomPath : phantomPath || 'phantomjs'  ) : '';
-    Which(path, function(err, path) {
-        // debug(path);
-        if (!err) {
-            vow.keep(path);   
-        }
-        else vow.breek(err);
-    });
+         options.phantomPath : phantomPath ) : false;
+    if (path)
+        Which(path, function(err, path) {
+            // debug(path);
+            if (!err) {
+                vow.keep(path);   
+            }
+            else vow.breek(err);
+        });
     return vow.promise;
 }
 
@@ -97,7 +95,9 @@ function render(url, phantomPath) {
         //     debug("js error: " + data.toString());
         // }
         // else
-        html += data;
+        if (data.indexOf('PHANTOM ERROR: ') === 0)
+            debug(data);
+        else html += data;
     });
 
     phantom.stderr.on('data', function (data) {
@@ -123,7 +123,7 @@ function render(url, phantomPath) {
             //  otherwise if/when google bot will start to parse js
             //  it will lead to duplicate renderings of the page.
             var data;
-            try { data = JSON.parse(html);  } catch(e) {  }
+            try { data = JSON.parse(html);  } catch(e) { debug('oops, json parse error..');  }
             if (data) {
                 if (data.headers.status === 301) {
                     data.headers.location = data.headers.redirectURL;
