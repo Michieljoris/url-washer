@@ -178,8 +178,8 @@ module.exports = wash;
 // initPhantom().when(
 //     function(path) {
 //         console.log(path);
-//         render('http://localhost:9000', path ).when(
-//             function(data) { console.log("RESULT:", data, data.headers.headers);}
+//         render('http://localhost:9000/#!/courses#intro', path ).when(
+//             function(data) { console.log("RESULT:", data.links, data.headers);}
 //             ,function(data) { console.log('Error', data);}
 //         );
 //     },
