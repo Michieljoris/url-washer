@@ -31,7 +31,7 @@ function debug() {
 try {
     phantomPath = require('phantomjs').path;
 } catch(e) {
-    debug('Node phantomjs module not installed', e); } 
+    debug('Node phantomjs module not installed, will try to use native phantomjs.', e); } 
 
 function initPhantom() {
     var vow = VOW.make();
