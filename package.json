@@ -1,7 +1,7 @@
 {
     "name": "url_washer",
     "description": "Pass in an url and get back the html cleansed of js..",
-    "version": "0.2.4",
+    "version": "0.2.7",
     "homepage": "https://github.com/michieljoris/url_washer",
     "keywords": [
         "phantomjs",
