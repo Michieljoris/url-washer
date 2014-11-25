@@ -1,0 +1,105 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/michieljoris/bin/node',
+1 verbose cli   '/home/michieljoris/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 verbose node symlink /home/michieljoris/bin/node
+5 verbose publish [ '.' ]
+6 verbose cache add [ '.', null ]
+7 verbose cache add name=undefined spec="." args=[".",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '.',
+8 verbose parsed url   path: '.',
+8 verbose parsed url   href: '.' }
+9 silly lockFile 3a52ce78- .
+10 verbose lock . /home/michieljoris/.npm/3a52ce78-.lock
+11 verbose tar pack [ '/home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz',
+11 verbose tar pack   '.' ]
+12 verbose tarball /home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+13 verbose folder .
+14 info prepublish url_washer@0.2.12
+15 silly lockFile 1f1177db-tar tar://.
+16 verbose lock tar://. /home/michieljoris/.npm/1f1177db-tar.lock
+17 silly lockFile 89045a83-73686-0-8189056299161166-tmp-tgz tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+18 verbose lock tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz /home/michieljoris/.npm/89045a83-73686-0-8189056299161166-tmp-tgz.lock
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 1f1177db-tar tar://.
+21 silly lockFile 89045a83-73686-0-8189056299161166-tmp-tgz tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+22 silly lockFile 89045a83-73686-0-8189056299161166-tmp-tgz tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+23 verbose tar unpack /home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+24 silly lockFile 521b5764-is-npm-url-washer-0-2-12-package tar:///home/michieljoris/.npm/url_washer/0.2.12/package
+25 verbose lock tar:///home/michieljoris/.npm/url_washer/0.2.12/package /home/michieljoris/.npm/521b5764-is-npm-url-washer-0-2-12-package.lock
+26 silly lockFile 89045a83-73686-0-8189056299161166-tmp-tgz tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+27 verbose lock tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz /home/michieljoris/.npm/89045a83-73686-0-8189056299161166-tmp-tgz.lock
+28 silly gunzTarPerm modes [ '755', '644' ]
+29 silly gunzTarPerm extractEntry package.json
+30 silly gunzTarPerm modified mode [ 'package.json', 488, 492 ]
+31 silly gunzTarPerm extractEntry .npmignore
+32 silly gunzTarPerm modified mode [ '.npmignore', 488, 492 ]
+33 silly gunzTarPerm extractEntry README.md
+34 silly gunzTarPerm modified mode [ 'README.md', 488, 492 ]
+35 silly gunzTarPerm extractEntry phantomjs-script.js
+36 silly gunzTarPerm modified mode [ 'phantomjs-script.js', 488, 492 ]
+37 silly gunzTarPerm extractEntry package.js
+38 silly gunzTarPerm modified mode [ 'package.js', 488, 492 ]
+39 silly gunzTarPerm extractEntry wash.js
+40 silly gunzTarPerm modified mode [ 'wash.js', 488, 492 ]
+41 silly gunzTarPerm extractEntry LICENSE.txt
+42 silly gunzTarPerm modified mode [ 'LICENSE.txt', 488, 492 ]
+43 silly gunzTarPerm extractEntry docs/docco.css
+44 silly gunzTarPerm modified mode [ 'docs/docco.css', 488, 492 ]
+45 silly gunzTarPerm extractEntry docs/package.html
+46 silly gunzTarPerm modified mode [ 'docs/package.html', 488, 492 ]
+47 silly gunzTarPerm extractEntry url_washer.org
+48 silly gunzTarPerm modified mode [ 'url_washer.org', 488, 492 ]
+49 silly lockFile 521b5764-is-npm-url-washer-0-2-12-package tar:///home/michieljoris/.npm/url_washer/0.2.12/package
+50 silly lockFile 521b5764-is-npm-url-washer-0-2-12-package tar:///home/michieljoris/.npm/url_washer/0.2.12/package
+51 silly lockFile 89045a83-73686-0-8189056299161166-tmp-tgz tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+52 silly lockFile 89045a83-73686-0-8189056299161166-tmp-tgz tar:///home/michieljoris/tmp/npm-24916-rgZGVguz/1416881773686-0.8189056299161166/tmp.tgz
+53 silly lockFile 3a52ce78- .
+54 silly lockFile 3a52ce78- .
+55 silly publish { name: 'url_washer',
+55 silly publish   description: 'Pass in an url and get back the html cleansed of js..',
+55 silly publish   version: '0.2.12',
+55 silly publish   homepage: 'https://github.com/michieljoris/url_washer',
+55 silly publish   keywords: [ 'phantomjs', 'seo', 'server' ],
+55 silly publish   repository:
+55 silly publish    { type: 'git',
+55 silly publish      url: 'https://github.com/michieljoris/url_washer.git' },
+55 silly publish   author:
+55 silly publish    { name: 'Michiel van Oosten',
+55 silly publish      email: 'mail@axion5.net',
+55 silly publish      url: 'http://blog.axion5.net/' },
+55 silly publish   licenses:
+55 silly publish    [ { type: 'MIT',
+55 silly publish        url: 'http://github.com/michieljoris/url_washer/blob/master/LICENSE.txt' } ],
+55 silly publish   main: 'wash.js',
+55 silly publish   engines: { node: '>= 0.6.x' },
+55 silly publish   dependencies: { dougs_vow: '*', which: '*', request: '*', extend: '*' },
+55 silly publish   devDependencies: { 'fs-extra': '0.3.x', doccoh: '0.4.1' },
+55 silly publish   private: false,
+55 silly publish   scripts: { dist: 'node dist; node_modules/.bin/doccoh src/package.js' },
+55 silly publish   readme: 'url_washer\n-----------------\n\n    var wash =require(\'path/to/wash.js\');\n    var washed = wash(\'someurl\', someOptions);\n\nwash returns a vow (Crockford\'s version) that promises to deliver html\nrendered by phantomjs after browsing someUrl.\n\nIf phantomjs is not on the path, you can pass in the path in options:\n\n    someOptions = \n    { phantomPath: \'path/to/phantomjs\', \n\t  seoServer: \'seoServerUrl\'}\n\nYou can also do\n\n    npm install phantomjs \n\t\nin the url_washer dir.\n\nOr uncomment the phantomjs dependency in package.js, then:\n\n    node package.js\n\tnpm install\n\t\nIf wash can\'t find a phantomjs executable it will ask the seoServer\n(if set in options)\n\nIt will do an ajax call to http://seoServerUrl?url=someUrl, and expect\nhtml to be returned.\n\nFinally:\n\n    washed.when(function(html) { \n\t   //send the html perhaps\n\t},\n\tfunction(err) {\n\t  //no dice, you will have to send uncleansed html\n    })\n\n\n\n\n',
+55 silly publish   readmeFilename: 'README.md',
+55 silly publish   bugs: { url: 'https://github.com/michieljoris/url_washer/issues' },
+55 silly publish   _id: 'url_washer@0.2.12',
+55 silly publish   _shasum: '3342bd9cfa06dd047963905cc49491413c1ec38b',
+55 silly publish   _from: '.' }
+56 error need auth auth and email required for publishing
+56 error need auth You need to authorize this machine using `npm adduser`
+57 error System Linux 3.13.0-32-generic
+58 error command "/home/michieljoris/bin/node" "/home/michieljoris/bin/npm" "publish"
+59 error cwd /media/michieljoris/d5099508-7d17-4aea-ac80-ac38100b9447/mysrc/javascript/url_washer
+60 error node -v v0.10.28
+61 error npm -v 1.4.9
+62 error code ENEEDAUTH
+63 verbose exit [ 1, true ]
